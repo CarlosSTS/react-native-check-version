@@ -68,9 +68,9 @@ if (version.needsUpdate) {
 
 ## Authors
 
-This library is developed by Flexible Agency, a creative app development agency.
+This library is developed by Includable, a creative app development agency.
 
-- Thomas Schoffelen, [@tschoffelen](https://twitter.com/tschoffelen)
+- Thomas Schoffelen
 
 <br /><br />
 
@@ -78,7 +78,7 @@ This library is developed by Flexible Agency, a creative app development agency.
 
 <div align="center">
 	<b>
-		<a href="https://schof.co/consulting/?utm_source=flexible-agency/react-native-check-version">Get professional support for this package →</a>
+		<a href="https://includable.com/consultancy?utm_source=react-native-check-version">Get professional support for this package →</a>
 	</b>
 	<br>
 	<sub>

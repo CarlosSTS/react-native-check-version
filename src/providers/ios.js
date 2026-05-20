@@ -15,9 +15,9 @@ export const getIosVersion = async (bundleId, country) => {
 
   const res = data.results[0];
   return {
-    version: res.version || "",
-    releasedAt: res.currentVersionReleaseDate || res.releaseDate || "",
-    updateAt: res.currentVersionReleaseDate || "",
+    version: res.version || null,
+    releasedAt: res.releaseDate || "",
+    updatedAt: res.currentVersionReleaseDate || "",
     notes: res.releaseNotes || "",
     url: res.trackViewUrl || res.artistViewUrl || res.sellerUrl || "",
     country: country || "",

@@ -28,7 +28,7 @@ const version = await checkVersion();
 console.log("Got version info:", version);
 
 if (version.needsUpdate) {
-   console.log(`App has a ${version.updateType} update pending.`);
+  console.log(`App has a ${version.updateType} update pending.`);
 }
 ```
 
@@ -48,12 +48,21 @@ if (version.needsUpdate) {
 `checkVersion()` returns a Promise, which when resolved will return an object with the following properties:
 
 - string `version`: latest version number of the app
-- string `released`: (iOS only) ISO 8601 release date of that version
+- string `releasedAt`: ISO 8601 release date of that version (when available)
+- string `updatedAt`: ISO 8601 last update date of that version (when available)
 - string `url`: download URL for the latest version
-- string `notes`: release notes of latest version
+- string `notes`: release notes for the latest version (when available)
+- string `appIcon`: app icon URL (when available)
+- string `appName`: app name (when available)
+- string `description`: app description (when available)
 - boolean `needsUpdate`: whether the latest version number is higher than the currently installed one
 - string `updateType`: `major`, `minor` or `patch`, based on how big the difference is between the currently installed
   version and the available version
+- string `platform`: resolved platform used for the lookup
+- string `bundleId`: resolved bundle ID used for the lookup
+- string `country`: resolved country used for the lookup
+- string `lastChecked`: ISO 8601 timestamp of the lookup
+- Error `error`: error information when the lookup fails
 
 ## Changelog
 

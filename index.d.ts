@@ -11,16 +11,21 @@ export interface CheckVersionOptions {
 }
 
 export interface CheckVersionResponse {
-  version: string;
-  released?: Date; // iOS only
-  url: string;
-  notes?: string; // iOS only
+  version: string | null;
+  releasedAt?: string;
+  updatedAt?: string;
+  url: string | null;
+  notes?: string;
+  appIcon?: string;
+  appName?: string;
+  description?: string;
   needsUpdate: boolean;
-  updateType?: CheckVersionUpdateType;
+  updateType?: CheckVersionUpdateType | null;
   platform?: PlatformOSType;
   bundleId?: string;
   lastChecked?: string;
   country?: string;
+  notice?: string;
   error?: Error;
 }
 

@@ -23,16 +23,26 @@ export const getAndroidVersion = async (bundleId, country) => {
   }
 
   const text = await res.text();
-  const version = text.match(/\[\[\[['"]((\d+\.)+\d+)['"]\]\],/)[1];
-  const notes = text.match(/<div itemprop="description">(.*?)<\/div>/)?.[1];
-  const updateAt = text.match(/<div class="xg1aie">(.*?)<\/div>/)?.[1];
+  const version = text.match(/\[\[\["([0-9A-Za-z.\-_]+)"\]\]/)?.[1] ||
+    text.match(/]],"(\d+\.\d+\.\d+\.\d+)",null,\[\[\[/)?.[1];
+  const notes = text.match(/itemprop="description">(.*?)<\/div>/)?.[1];
+  const updatedAt = text.match(/<div class="xg1aie">(.*?)<\/div>/)?.[1];
+  const releasedAt = text.match(/\["([^"]+)",\[\d+,\d+\]\]/)?.[1];
+  const appIcon = text.match(/<meta property="og:image" content="([^"]+)"/,)?.[1];
+  const appName = text.match(/<title.*?>(.*?) (–|-)/)?.[1];
+  const description = text.match(/<meta name="description" property="og:description" content="([^"]+)"/,)?.[1];
 
   return {
     version: version || null,
-    releasedAt: (new Date()).toISOString(),
-    updateAt: updateAt || "",
+    releasedAt: releasedAt || "",
+    updatedAt: updatedAt || "",
     notes: notes || "",
     url: `https://play.google.com/store/apps/details?id=${bundleId}&hl=${country}`,
-    lastChecked: (new Date()).toISOString()
+    country: country || "",
+    bundleId: bundleId || "",
+    lastChecked: new Date().toISOString(),
+    appIcon: appIcon || "",
+    appName: appName || "",
+    description: description || "",
   };
 };
